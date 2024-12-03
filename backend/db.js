@@ -22,12 +22,21 @@ const SigninSchema=new mongoose.Schema({
 const contentTypes = ['image', 'video', 'article', 'audio']; // Extend as needed
 
 const contentSchema = new mongoose.Schema({
-  link: { type: String, required: true },
-  type: { type: String, enum: contentTypes, required: true },
-  title: { type: String, required: true },
-  tags: [{ type: Types.ObjectId, ref: 'Tag' }],
-  userId: { type: Types.ObjectId, ref: 'User', required: true },
+  title: String,
+  link: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    validate: async function(value) {
+      const user = await User.findById(value);
+      if (!user) {
+        throw new Error('User does not exist');
+      }
+    }
+  }
 });
+
 const tagSchema = new mongoose.Schema({
     title: { type: String, required: true, unique: true }
   });
