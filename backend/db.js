@@ -25,7 +25,7 @@ const ContentSchema = new mongoose.Schema({
   title: String,
   link: String,
   tags: [{type: mongoose.Types.ObjectId, ref: 'Tag'}],
-  type: String,
+  type: { type: String, enum: contentTypes, required: true },
   userId: {type: mongoose.Types.ObjectId, ref: 'User', required: true },
 })
 const tagSchema = new mongoose.Schema({
@@ -37,7 +37,7 @@ const tagSchema = new mongoose.Schema({
   });
 const Tag = mongoose.model('Tag', tagSchema);
 const User= mongoose.model('User',SigninSchema);
-const Content= mongoose.model('Content',contentSchema);
+const Content= mongoose.model('Content',ContentSchema);
 const Link=mongoose.model('Link',linkSchema)
 
 module.exports = {
