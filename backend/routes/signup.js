@@ -7,7 +7,7 @@ const signupSchema=require("../schema")
 rootRouter.post("/signup",async(req,res)=>{
     const { success } = signupSchema.safeParse(req.body)
     if (!success) {
-        return res.status(411).json({
+        return res.status(400).json({
             message: "Error in Inputs"
         })
     }
