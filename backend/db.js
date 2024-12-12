@@ -19,7 +19,7 @@ const SigninSchema=new mongoose.Schema({
     maxlength: 20,
     }
 })
-const contentTypes = ['youtube', 'twitter']; // Extend as needed
+const contentTypes = ["youtube", "twitter"]; // Extend as needed
 
 const ContentSchema = new mongoose.Schema({
   title: String,
