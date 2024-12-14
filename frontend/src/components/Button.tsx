@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 interface Buttonstyles{
     variant:"Primary" | "Secondary",
     text:string,
-    startIcon:ReactElement,
+    startIcon?:ReactElement,
     onClick?: () => void;
     fullWidth?: boolean;
     loading?: boolean;
